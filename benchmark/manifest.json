@@ -1,0 +1,339 @@
+{
+  "implementations": {
+    "claude": {
+      "archive": "claude-initial.tar.gz",
+      "archive_sha256": "ea3ff8120dcfbc515dde67966759880623e1a32a8b10b1a697d0208ae4ed0412",
+      "files": {
+        ".dockerignore": "b156bd5e12338e458ce1246d825c78ebf3c4ab5d50137d39cccae462af44edb8",
+        ".gitignore": "c9694ff14019ad043627f6fff30f8a9f7a689a1940a128a468c6ece4e97a438c",
+        "Dockerfile": "163fe67b4a1534ac7e2f4fcbd591764329db04cb7c7d1d70a0594f455d7880dc",
+        "README.md": "29eb6bbc83fb35e7ecf99c75558aec9fc2fe0d40c7d3380eb79b2ae6e7f76987",
+        "TASK.md": "ccd2eebc90859a21a1dd54ecf7b90cf0931dbe9294a3bee252d378479396c426",
+        "api/rest/openapi.yaml": "888ddc191b5802d2c9da686760395878e613689d450b49626abbca0fa808b6d7",
+        "cmd/booking/main.go": "05f7218f7439274cc9fcd5d247f54294ccbd6c633283fde72776b3f7c58015a1",
+        "compose.yaml": "dc36bea42cdb47205dd5a82312cdf0c54d6ddce78359a8d40d549a43371f7fdc",
+        "go.mod": "9205b565da5be2c32dfbe455f8a72540b82147cd2edac71d55409ffae9624cee",
+        "go.sum": "6a8eedb8cdc19a88e3f135106f1cf224ec6a32c9fc44fbbef68b2049806fa761",
+        "internal/app/app.go": "b651bb8f4ae9b4c3a875697bae1de2cdf215d913ba577c31f393a9ba649d78ac",
+        "internal/handler/rest/decode.go": "df50c40d356f4b8b4a1909e5e215da5da9eb726ef8889c167e6f4f5acee3bce9",
+        "internal/handler/rest/dependency.go": "75f7d230d76025ac5cd1b77af31fea73a15fb0c513180f12bea91141f14ed965",
+        "internal/handler/rest/errors.go": "bdaed391cb8cc719800f3f66b93cb46d0d94e1c310bcce9f51cb6a09f9ec960d",
+        "internal/handler/rest/gen/config.yaml": "d7ed4b0d7cfec4542a7f8eb49a4af3b910c513ca8629d7a5e073b60e6eb7ac83",
+        "internal/handler/rest/gen/generate.go": "315e70fde29a72b0ab49e5eefcc66ed89af8106c4a0223c5f32fbc687e91f84c",
+        "internal/handler/rest/gen/server.gen.go": "1cf5c03bbd3f3ba53277a385dd62df9b8904e2a9f74fc0bd182e4bb2502b731a",
+        "internal/handler/rest/handler.go": "13ddb5119aabb7866e0ca4ace85fcdd7f53815085d7e9a02960d9ffdaa5d7800",
+        "internal/handler/rest/mapper.go": "2b8caccb28dd76b3045a0fea5beaa388fcdf969f5fc47b200630ad3978d66bc0",
+        "internal/handler/rest/mocks/mock.go": "099e2e27888fea132ddb535e22b0bb15e8f07b1e3cb32c636452d95293b9aa5e",
+        "internal/handler/rest/server.go": "d1d6575d52a9a13a3df4a28066992a06b2640a7428257566baa0ea40beaaed23",
+        "internal/handler/rest/server_test.go": "851ffcd484cdddd50afe209130a7d863665eedc5e43ca51e4fc198fef139c199",
+        "internal/model/booking/booking.go": "733e7b113c5543a23576f79052b61a715d2226b2194974dbb21fea7698548b7c",
+        "internal/model/booking/create.go": "633d0aa1e4863dd6078ca47f1449bfd17f5f2d1c81f73d6a00030f403f838c82",
+        "internal/model/booking/search.go": "9c27f5bcf7576325e40f540966354fc03d34a49036499e5918650596f12b7181",
+        "internal/model/event/create.go": "1965526541f20f14c11dc77abb40e675f51c03d9f77ed6641f0cd0a656078c45",
+        "internal/model/event/event.go": "d5fa720ef89f57d11e6a465e951545770b5ca6d1ebc5ff75f92d3149b311a84e",
+        "internal/model/event/search.go": "8dd1cadb0e7489e921457f5773bd2bf188267106b8b4e9c73ee6352618a3f625",
+        "internal/model/page/page.go": "368057176668187d00ef09590c789ad76cd87625450caa8ad006f7e46c5b6b4a",
+        "internal/model/page/page_test.go": "c633a194040e38eddbcc6c2eae54c6daf254228b6b5698efc04fd319248b92a9",
+        "internal/model/validation/validation.go": "28e0fd575e463da9d6449e124cb4966044a2f300e24e980e0a5940a3fbe8da8e",
+        "internal/model/validation/validation_test.go": "5b01718379f658496a46165d01db1442f1466e9f0144da1dee1e8f1f5c1b5245",
+        "internal/repository/postgres/booking.go": "f67f3acd89ec1f3081530a8dd03edd79bc8c00924ef678e2d0e47df52c243ec4",
+        "internal/repository/postgres/cancel_booking_integration_test.go": "8f725db71f96234dbeaa30be7393db5f27c1ae438d63c591b32e3355dc2b8f8a",
+        "internal/repository/postgres/create_booking_integration_test.go": "93ccec7f8dd8f7cc7e398462af2752ee44107cb602f655231b9b5e4cf795c18d",
+        "internal/repository/postgres/create_event_integration_test.go": "991769d8bf36dd2f71f7a6d2718d0d0ab7ab645b8f5904a8e2552ecc8ddfbe6d",
+        "internal/repository/postgres/event.go": "d38fd79cc2a9477d365bdec60157eb1b0b3f5a3d4fa73ffd8587e8cad2f8c9af",
+        "internal/repository/postgres/fetch_booking_integration_test.go": "3ec7a834195eff8c9109a960a8e53ab890a287d86e1c48961b9d4e5c0357d8fb",
+        "internal/repository/postgres/fetch_event_integration_test.go": "fc71ec0abe86b5bbaed6ab46b21ed71d3937b0893e5ec7366a3d943526a43d8e",
+        "internal/repository/postgres/migrate.go": "63ccb8a23df8aceaa45d7eed5c8a9eefab086c964fc29d1100d7d6a858a912af",
+        "internal/repository/postgres/migrate_integration_test.go": "29998a98be771cfa181a73badf8a6e5c75581dcfbd083eb0953436756628218a",
+        "internal/repository/postgres/migrations/0001_init.sql": "d0836846d7cde87bb4bf451634fdcfb608a634ba4a8ffc0c6beea5d34f8b9de9",
+        "internal/repository/postgres/ping_integration_test.go": "1d830182bfa151d28c0d8e7f2a20a337bee2cbcc4f5f3fdac6c21497904b9a1f",
+        "internal/repository/postgres/repository.go": "5f95dd82a23cbd01e9b707c87dc9510b124f93841a0ef4234a744a416618c217",
+        "internal/repository/postgres/repository_integration_test.go": "be674f3bed55b3ea6e0c38de3d13f84f007dbb681f553181a41d2fb8324474fa",
+        "internal/repository/postgres/search_bookings_integration_test.go": "9bdd6968302c9dee225014d895b0c9cd5d32440003f28b8926538aab25278c94",
+        "internal/repository/postgres/search_events_integration_test.go": "2d728a916bbba8b19f63b79daf54fc12fd9acdaf965089e063e258fb86d5c258",
+        "internal/service/booking/cancel_test.go": "755ee4dca18e46df9a71ec8e6dfc61a3dbaad30367898376a055cee1b058850a",
+        "internal/service/booking/create_test.go": "e216ff3ab2ef35c3f09a8902eea92c99f9b852d000f6023087255843c3066475",
+        "internal/service/booking/dependency.go": "b175b4f330430c3c91e237a811e7e7d23c0ee9e02c685ba7043a795318fb66a0",
+        "internal/service/booking/fetch_test.go": "e672c36c25b9ba025ee5a57d7b188acd0a736df98225c265d2ec219e3be51cd8",
+        "internal/service/booking/mocks/mock.go": "4868b842c54d2b42afde778cc6fc119f381057474862a85ce3021d28e01839ac",
+        "internal/service/booking/search_test.go": "af5e50b13c299c5b44695a5bf2e5bcb729e91baa6cb5d9285b6c3cbbc21271a0",
+        "internal/service/booking/service.go": "0a99e3676884f741d2cdbea21289a6b9c70f99d7a5c80e7e7a71d146d848e92d",
+        "internal/service/event/create_test.go": "131e7f339eb57c071935c349ac67cef57c0076bb20b59c783a7e32e2f7597fa8",
+        "internal/service/event/dependency.go": "52b695bc47b8096666e8ccb0c95311320ecc99dfb4458d931016d28630176b01",
+        "internal/service/event/fetch_test.go": "604625c5fa52a009a877b88d9136b1ec844de6e8d766eb7ac4a5d803214c2056",
+        "internal/service/event/mocks/mock.go": "15e721c3b19fb29066b6ffa0418b9c8a4c15cb194f6a6532e1d965d44b7d7525",
+        "internal/service/event/search_test.go": "9ddd825681a9c3e7ebcf6752e068f1c44b0f268c8453e948c7708b7c529d5fa7",
+        "internal/service/event/service.go": "8406cfc4ce0c09ce45c84d626c8ccdc2966ccaf1c4b51bc668d5ec04a3dad827",
+        "test/e2e/booking_workflow_test.go": "534097411ac8c6ccf25ce26cc7110e8684db8572119b3b72119843d2273b28ac",
+        "test/e2e/concurrency_test.go": "32b082347cdd8e8654d4adf4131006cc17191bbea907f4512ebe16c0ba33df56",
+        "test/e2e/restart_test.go": "287a22ef31ceae61de9ee6e8f12fa4bd19256d0da9d7b85a7552937f1cbf871f",
+        "test/e2e/suite_test.go": "2fa376571bdc8348666b205e9c60f02e22783f0f3ad5389f5998abc89bd9edcb"
+      },
+      "client": "Claude Code 2.1.318",
+      "model": "Opus 5.5",
+      "reasoning": "High",
+      "displayed_duration": "44:54"
+    },
+    "codex": {
+      "archive": "codex-initial.tar.gz",
+      "archive_sha256": "9be58e40ece98df5c18baedbfd4e74f57a26dc0ccfdc05513ce0d4faebf885d1",
+      "files": {
+        ".dockerignore": "e0df466e390ddfb081b9f9fdfcbd281b4146705122c63433fac1be16002fe0f4",
+        ".gitignore": "4850944968442838d8793b3f7121934dac193cc81719c30ed050704cda5e7ccf",
+        "Dockerfile": "8955dbcdb0eda8c0cffbd8f28141f9001b06ca3bddb678f19762dfb04c1209c5",
+        "README.md": "24be45ccb2339ac9935a21ad0b2732d2cf8616f3a19985e112ec769c2dbcc40c",
+        "TASK.md": "ccd2eebc90859a21a1dd54ecf7b90cf0931dbe9294a3bee252d378479396c426",
+        "cmd/server/main.go": "3da9ceae36d90d4d5c29cc2613ac860dc4094a5b79fa44492f9e82c6b9377b80",
+        "compose.test.yaml": "8725a3d2a4667988e49f1df5555c55064b2bb481f3ff07294eb2b02020c37664",
+        "compose.yaml": "2184ad94c14484bea0f5de444f7f04a40ba7637845a26b22e8c1e98de3da306f",
+        "go.mod": "56cea7ae1a7a7ec0234e4c34ea518aad27abc5c6e1e903bf6e0fbfff4aad7ebc",
+        "go.sum": "4e7e05768d607a1cc09d1dbe92d138751e9111200e8eadf2be5d7c99b189e834",
+        "internal/api/api.go": "e441a10a0c54a68b1301926ac620b4cbebe39395ed1fbd4e6b75c8b64378fd0d",
+        "internal/api/api_test.go": "bc29c7b17308d83645873e719859438e69e85b9ed5a064c395cbc278280f9b4d",
+        "internal/api/integration_test.go": "c19f18a06ea4bd86802ba2c23f38866c40262f993d02896581f102ad7bf83c65",
+        "internal/store/schema.sql": "bfa7962e889b4fd7656607fa36dd781bcaa69e1bd7573e4933b0b451b863fffd",
+        "internal/store/store.go": "5a1a74dda02992e83de852922f77f3ee37cdcf02a00d2f3c53f19dfb5f16f022",
+        "scripts/test-integration.sh": "5c74ac95e5bb2bede42f62525cce892ed803ad17be0ee639a6bb5493170ff3dc"
+      },
+      "client": "Codex CLI 0.166.0",
+      "model": "GPT-6.1-Sol",
+      "reasoning": "High",
+      "displayed_duration": "12:00"
+    },
+    "deepseek": {
+      "archive": "deepseek-initial.tar.gz",
+      "archive_sha256": "ba1b663a3e6193df1866ddb57b5da1921ffd014d08c19589c40dd1b35b373a1d",
+      "files": {
+        ".dockerignore": "ac4a497dec1a17cf15ec0a1dc0785c585a871fb0a166cf8f714e636665676baf",
+        "Dockerfile": "fb076b46dfd229ba49f9d5c3ff7f673ab08c8e70e477eba8ca42f75ac0812672",
+        "Makefile": "8caa1ec90bd610ca139cb5c12f6926eebd40d007617851e44e93ef658223aff2",
+        "README.md": "fe3213e3905124f9263eaeb83099a3c77a7b946f6b56f5ed7583249107ebd33b",
+        "TASK.md": "ccd2eebc90859a21a1dd54ecf7b90cf0931dbe9294a3bee252d378479396c426",
+        "cmd/server/main.go": "a382ed960ad33cee03cd8eed162ad1e1bb9f5c018f0cc826d8363d6127470f92",
+        "compose.yaml": "12368d756f37747e7494e3ecf5966014bff1294735c2eba7fe39bcb8d90e05b5",
+        "go.mod": "290d4a6b1a13db7efd5ef19da737b50fd977ecd15df81f578cc7ca15bbd81190",
+        "go.sum": "27cab86ee7fd9d2ab7f123eec4642a29614186770a20b8976d21fb45159299f1",
+        "internal/api/api.go": "0e500754d3d1bd9df2ebf476424cd5cf2756a8fb83012d4b80beac3e0c47fd5c",
+        "internal/api/errors.go": "ea2ea3064d0497a33931ca81ad16e1db03001e2452d26db959ae82aa116e481b",
+        "internal/api/handlers.go": "ee58d10788fc0b137b3a30e6507e14d9071a055abfe13a1066643e6ff61f2b7f",
+        "internal/api/middleware.go": "5a51a82e720d24553d834ff1abaa035ef7b07c8a25d4cbf6dba2fa17e8019e70",
+        "internal/api/validation.go": "77aa1e8fad5bfda3acd4c7e6f8a5a8b195a3124b2e498b3e9592cdaae3b5a3ce",
+        "internal/api/validation_test.go": "f32dbd1b1bfce0954fa5ee839b42ff1da9c95f539bc1227ec28d51eb8afc29ab",
+        "internal/config/config.go": "0e58628caba5ffcd092de375ef41f5bfe9251719e37a63959d3515db4a66f059",
+        "internal/db/db.go": "2d4778a540eec7648ab6fb1139a79a61ecd2f9fc96494761bc82fbef73eefd86",
+        "internal/integration/api_test.go": "6510db15d79b9b838e13af03f9f0ef1a723eca2306cbef93d2f431c6e43d1565",
+        "internal/integration/helpers_test.go": "a5549a1ba0b7d7528ddaef8c6d448c84a1d283060a6ae068524b28c2be4f6c83",
+        "internal/migrate/migrate.go": "c42ec11b6fa4350338b77b3693a5c1e2ab5391a8d5885b4cf044306daef7fbb2",
+        "internal/migrate/migrations/0001_init.sql": "75af455a608d6a2db7ca16fa2ded8e806b2f91da6c09b9b3d022fe5b29fccf30",
+        "internal/model/model.go": "6e17771de06b8021a0910b98776bc1478e708647714f8621ef228d0793ac2cf0",
+        "internal/store/errors.go": "f70842b626e82933f13b87f0f1ccaa1c90b18e667bfea943db3d87d0cd1d28cb",
+        "internal/store/store.go": "9919278776a17a12ace819672d7661dbbfde6083fa8858b9c8bb6f31ea3fc518",
+        "internal/testutil/postgres.go": "5e1ab4486c9487c7a91b29d891bf41e3e243820b0bf68f621605ba7ea020e1f0"
+      },
+      "client": "OpenCode 2.2.5",
+      "model": "DeepSeek V4.1 Flash 1017",
+      "reasoning": "High",
+      "displayed_duration": "22:26"
+    },
+    "glm": {
+      "archive": "glm-initial.tar.gz",
+      "archive_sha256": "c9486839df296308955213f8cc07a1de5a1507207abe2b16e6bed7297f4162be",
+      "files": {
+        ".dockerignore": "10f6ac32b02c6e5b429f22b830156af332a86c6039e540835d963da901137105",
+        ".gitignore": "493f95c86aa4a842948b264dbf1a3c16c683368d0d861b60808f85aef9257b5e",
+        "Dockerfile": "c89785cc148b28339c6793e6e7f5cdab3f9e5e42c8d4aec8307eda67172a9042",
+        "README.md": "a44e6e36214c5f98babf579794605d704cbe89064d767a45123c8eb59004a23a",
+        "TASK.md": "ccd2eebc90859a21a1dd54ecf7b90cf0931dbe9294a3bee252d378479396c426",
+        "cmd/server/main.go": "537a6f68af4311e235913e7a3862d1b3b2a86d813e7d7e74a3db84ffb6628bed",
+        "compose.yaml": "0883d239b587ae6e931ac367bdcf9bd1267b4015302d0eca69649c6cc930ee6f",
+        "go.mod": "0bfcb8eefaf5afddbacc96bc15b114f37c6d4389384ee521033b2420a87a42cf",
+        "go.sum": "c9ec77321f398e347300b758d2bafc7c03983557f5e748c9c017c35c2301b52c",
+        "integration/integration_test.go": "4381109ff4aedc639a6001a8a4da7367e08b2c544567fde9fd281dab08cf2512",
+        "internal/domain/domain.go": "b0d66e463133bc1fce6797d0ffbd8b427219665c41c75df15958a6bac3b3118d",
+        "internal/httpapi/server.go": "01a1e84c42bb63ac92f105d83ec49aa7299ed729c39edb25a8a59db4e8d0c1ba",
+        "internal/service/service.go": "5ee999d696e7694c36359b2266964b03519d4cc5ed75259e777c2c62f67ebd44",
+        "internal/service/service_test.go": "ac947345fe686f4c9244562cc8450ef505a368428a62f943e4e645835ce78dc8",
+        "internal/store/migrations.go": "43ea5c12712d99fbcfd238f9830adc10a17d8c69b620f9bfbf8727a5bc035af7",
+        "internal/store/postgres.go": "6ee9aba0d30aae1da2dbafbafed581970da619d14750d120d408f5f551207ca1",
+        "scripts/integration.sh": "8d1d0df4c9ffc617c2fcd01359061542cd1e4b0b35c84a5e0fc2eebcd01e5e2c"
+      },
+      "client": "OpenCode 2.2.5",
+      "model": "GLM-5.3",
+      "reasoning": "High",
+      "displayed_duration": "26:59"
+    },
+    "kimi": {
+      "archive": "kimi-initial.tar.gz",
+      "archive_sha256": "3c0d4d7f8974e5d529899fda5540866aa116b85a1b525690112b6fa987e3fdbb",
+      "files": {
+        ".dockerignore": "bddb115797e8a46a981b33167b7a8438b438b1446b0723cc16421f0576dd22cc",
+        ".gitignore": "562cec84071d021a19e120ea435a231b510505ab2b4e3b1d43785a10057bac7b",
+        "Dockerfile": "b741060db51c1c8db19f600a6b97c24dae9ec82cc7b2a1e322ecd74b8c7e48fe",
+        "README.md": "7629f9d618678197dcc769c9c9ffc8a2889dbf2ad9d41169992a00d8aa70b833",
+        "TASK.md": "ccd2eebc90859a21a1dd54ecf7b90cf0931dbe9294a3bee252d378479396c426",
+        "cmd/booking/main.go": "8b975a9e5f4ec0e7e8b12f83d4b8f4565d38221b94dc444cd81f89064dc1f799",
+        "compose.yaml": "d128a5333b6787ac650dff5f74e2b321569ef93111b623c36a811ca4ae79dfae",
+        "go.mod": "8736348990e4583522b177214ff47041a44085445c5fd299941321a6eca6f02e",
+        "go.sum": "154810850cd9ef0f31713ab1f4e42fbe7d83182c009956048d881ad26227ed6a",
+        "internal/booking/handler.go": "23a528aac7861b711b7f7774feebb021c2eb08301de579f96f847ef027de87de",
+        "internal/booking/integration_test.go": "61a9a935a87ca60f02ed2f0c648b131949ddec39d092e07e45b2ebb9e38393c3",
+        "internal/booking/migrate.go": "87f3d4d1ad03d5e503cc3161a2899a2d5a9b1bfb0ce9d797dd506f0303b4dcc0",
+        "internal/booking/store.go": "f50ddbff751df49661939f05720649511fd34601f43598d4f7b09def4a9e76e9",
+        "internal/booking/types.go": "9856890a061a8a24f5ffdc561af44dcc1ec48de9cb58ae602e191bf6162048c3"
+      },
+      "client": "OpenCode 2.2.5",
+      "model": "Kimi K3.1 Pro",
+      "reasoning": "High",
+      "displayed_duration": "15:05"
+    }
+  },
+  "reviews": [
+    {
+      "reviewer": "codex",
+      "author": "claude",
+      "file": "codex_review.md",
+      "sha256": "b9e2a8529c8ec6909461ae660b77f4a6b6d9e157ab63f81f5992cc76ec572911",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "deepseek",
+      "author": "claude",
+      "file": "deepseek_review.md",
+      "sha256": "8ffd6c5572283706c5c60763b3bd6d1afc150ad1a8467ce7fd06b4180d4de428",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "glm",
+      "author": "claude",
+      "file": "glm_review.md",
+      "sha256": "cae1ed4742fff0f40d838f887ca9016a8a443772df5179fb3f95fb5203f09c55",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "kimi",
+      "author": "claude",
+      "file": "kimi_review.md",
+      "sha256": "d6a6179ccac10f66c6e1d4cf6aefbc2a9584faaafb2514af4b9880711fce7792",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "claude",
+      "author": "codex",
+      "file": "claude_review.md",
+      "sha256": "4f2516ca2bec985ebdccf5d35f2f05f268405ef0deec452ec84e74c805d2d9dd",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "deepseek",
+      "author": "codex",
+      "file": "deepseek_review.md",
+      "sha256": "d0b1e39479de62bf1eda5f4149405e54c0faa5c46542e49c07fab5dbcd641ee8",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "glm",
+      "author": "codex",
+      "file": "glm_review.md",
+      "sha256": "473028384b8d007bf0c2b3f0b687d124a578b5b647c01bcfc42f14237fa2ebcd",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "kimi",
+      "author": "codex",
+      "file": "kimi_review.md",
+      "sha256": "7ae89c75f3fe3aec12be3c33cbc481615912479780bc5fe4eab773683fb756d5",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "claude",
+      "author": "deepseek",
+      "file": "claude_review.md",
+      "sha256": "93ad51d9de6fac2612d53c9aaf24443c37ac118d3406e32ab70b7b754e3621b0",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "codex",
+      "author": "deepseek",
+      "file": "codex_review.md",
+      "sha256": "fc50e49a482e016271571ede4306d649c366714a0d5740df04ee9b41b506f2bb",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "glm",
+      "author": "deepseek",
+      "file": "glm_review.md",
+      "sha256": "2dc443484634c74753b1795e7adec9a6f2ff4e4faed0558ba4a22c40095a07ab",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "kimi",
+      "author": "deepseek",
+      "file": "kimi_review.md",
+      "sha256": "90050ac5ec25dbf3dce02ed59b4a000ff3d863ce520ba7566f495f3a5890cad3",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "claude",
+      "author": "glm",
+      "file": "claude_review.md",
+      "sha256": "ecb9a1c806625a6124d928842f18c007c107a2f6ead8b217dbd99d89ffc2bf51",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "codex",
+      "author": "glm",
+      "file": "codex_review.md",
+      "sha256": "89a45bd1383f2a74e0cefcd97c36015244c1474c9cab1165b5b3d6854e5f4510",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "deepseek",
+      "author": "glm",
+      "file": "deepseek_review.md",
+      "sha256": "13a54e546a55357c116a84693d4590c2b832a7edb6f79ac7575cdbffdd4a5f16",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "kimi",
+      "author": "glm",
+      "file": "kimi_review.md",
+      "sha256": "f427d683ac620ab5f29873d5dd389bd603b925909b7e800f570bfd2963087c8c",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "claude",
+      "author": "kimi",
+      "file": "claude_review.md",
+      "sha256": "81dee533ba2238ed0989d52ffccc12e2bd3321e7c6508c2fe77e75c809f39a8b",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "codex",
+      "author": "kimi",
+      "file": "codex_review.md",
+      "sha256": "b14d5561171693fedeff854fea28d90e1dbfd92f1b3aa587ee5ea475ee9d222f",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "deepseek",
+      "author": "kimi",
+      "file": "deepseek_review.md",
+      "sha256": "e6192bfbcd6e44cd002279f8491f9cfdcaea7656d11c39c31cfd1520e140df4b",
+      "findings_independently_validated": false
+    },
+    {
+      "reviewer": "glm",
+      "author": "kimi",
+      "file": "glm_review.md",
+      "sha256": "3b4b26363913b8b2eb9883829cfeb1f5388b09dc6b6f8319ad0099d64ef71a95",
+      "findings_independently_validated": false
+    }
+  ],
+  "review_count": 20,
+  "task_sha256": "ccd2eebc90859a21a1dd54ecf7b90cf0931dbe9294a3bee252d378479396c426",
+  "original_task_commit": "1c6e250",
+  "packaging_exclusions": [
+    "Original .git directories",
+    "codex/bin/server compiled executable"
+  ]
+}
