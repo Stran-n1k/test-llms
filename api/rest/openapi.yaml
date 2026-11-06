@@ -1,0 +1,408 @@
+openapi: 3.0.3
+info:
+  title: Booking service API
+  version: 1.0.0
+  description: |
+    Seat booking for events with limited capacity. Seats are interchangeable:
+    a booking takes a quantity of seats, not specific numbered seats.
+
+    Every error response has the `Error` schema. `error.code` is stable and
+    meant for programs, `error.message` is meant for people.
+tags:
+  - name: events
+  - name: bookings
+  - name: health
+paths:
+  /events:
+    post:
+      operationId: createEvent
+      tags: [events]
+      summary: Create an event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEventRequest"
+      responses:
+        "201":
+          description: Event created.
+          headers:
+            Location:
+              description: URL of the created event.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "413":
+          $ref: "#/components/responses/ErrorResponse"
+        "415":
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      operationId: listEvents
+      tags: [events]
+      summary: List events, oldest first
+      parameters:
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+      responses:
+        "200":
+          description: One page of events.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventPage"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+  /events/{event_id}:
+    get:
+      operationId: getEvent
+      tags: [events]
+      summary: Get an event with its current seat availability
+      parameters:
+        - $ref: "#/components/parameters/EventID"
+      responses:
+        "200":
+          description: The event.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+  /events/{event_id}/bookings:
+    post:
+      operationId: createBooking
+      tags: [bookings]
+      summary: Book one or more seats
+      description: |
+        Safe to retry with the same `Idempotency-Key`: the first successful
+        request creates the booking and answers 201; a repeat answers 200 with
+        the same booking in its current state and `Idempotent-Replayed: true`.
+        Failed attempts are not remembered, so a retry after 409 is evaluated
+        again.
+      parameters:
+        - $ref: "#/components/parameters/EventID"
+        - name: Idempotency-Key
+          in: header
+          required: true
+          description: |
+            Client-generated unique value, for example a UUID, of 1 to 255
+            printable ASCII characters. Generate it once per intended booking
+            and reuse it on every retry of that booking.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBookingRequest"
+      responses:
+        "201":
+          description: Booking created.
+          headers:
+            Location:
+              description: URL of the created booking.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+        "200":
+          description: Replay of an earlier request with the same key; nothing changed.
+          headers:
+            Idempotent-Replayed:
+              description: Always `true`.
+              schema:
+                type: string
+            Location:
+              description: URL of the existing booking.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+        "409":
+          $ref: "#/components/responses/ErrorResponse"
+        "413":
+          $ref: "#/components/responses/ErrorResponse"
+        "415":
+          $ref: "#/components/responses/ErrorResponse"
+        "422":
+          $ref: "#/components/responses/ErrorResponse"
+    get:
+      operationId: listEventBookings
+      tags: [bookings]
+      summary: List bookings of an event, oldest first
+      parameters:
+        - $ref: "#/components/parameters/EventID"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+      responses:
+        "200":
+          description: One page of bookings, including cancelled ones.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookingPage"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+  /bookings/{booking_id}:
+    get:
+      operationId: getBooking
+      tags: [bookings]
+      summary: Get a booking
+      parameters:
+        - $ref: "#/components/parameters/BookingID"
+      responses:
+        "200":
+          description: The booking.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+  /bookings/{booking_id}/cancel:
+    post:
+      operationId: cancelBooking
+      tags: [bookings]
+      summary: Cancel a booking and return its seats
+      description: |
+        Idempotent: seats return exactly once. Repeated and concurrent calls
+        all answer 200 with the cancelled booking, and `cancelled_at` keeps the
+        time of the call that actually cancelled it.
+      parameters:
+        - $ref: "#/components/parameters/BookingID"
+      responses:
+        "200":
+          description: The booking is cancelled.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+  /healthz:
+    get:
+      operationId: getHealth
+      tags: [health]
+      summary: Report whether the service can reach its database
+      responses:
+        "200":
+          description: The service is ready.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+        "503":
+          $ref: "#/components/responses/ErrorResponse"
+components:
+  parameters:
+    EventID:
+      name: event_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    BookingID:
+      name: booking_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size from 1 to 200, 50 by default.
+      schema:
+        type: integer
+        format: int32
+    Offset:
+      name: offset
+      in: query
+      required: false
+      description: Number of items to skip, 0 by default.
+      schema:
+        type: integer
+        format: int32
+  responses:
+    ErrorResponse:
+      description: The request failed; see `error.code`.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+  schemas:
+    CreateEventRequest:
+      type: object
+      additionalProperties: false
+      required: [name, starts_at, capacity]
+      properties:
+        name:
+          type: string
+          description: From 1 to 200 characters, without control characters.
+        starts_at:
+          type: string
+          format: date-time
+          description: RFC 3339 timestamp.
+        capacity:
+          type: integer
+          format: int32
+          minimum: 1
+          description: Total number of seats. Cannot be changed later.
+    Event:
+      type: object
+      required: [id, name, starts_at, capacity, booked_seats, available_seats, created_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        starts_at:
+          type: string
+          format: date-time
+        capacity:
+          type: integer
+          format: int32
+        booked_seats:
+          type: integer
+          format: int32
+        available_seats:
+          type: integer
+          format: int32
+        created_at:
+          type: string
+          format: date-time
+    EventPage:
+      type: object
+      required: [items, limit, offset, has_more]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Event"
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+        has_more:
+          type: boolean
+    CreateBookingRequest:
+      type: object
+      additionalProperties: false
+      required: [customer_name, seats]
+      properties:
+        customer_name:
+          type: string
+          description: From 1 to 200 characters, without control characters.
+        seats:
+          type: integer
+          format: int32
+          minimum: 1
+          description: Number of seats to book in one all-or-nothing step.
+    BookingStatus:
+      type: string
+      enum: [confirmed, cancelled]
+    Booking:
+      type: object
+      required: [id, event_id, customer_name, seats, status, created_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        event_id:
+          type: string
+          format: uuid
+        customer_name:
+          type: string
+        seats:
+          type: integer
+          format: int32
+        status:
+          $ref: "#/components/schemas/BookingStatus"
+        created_at:
+          type: string
+          format: date-time
+        cancelled_at:
+          type: string
+          format: date-time
+          description: Present only for a cancelled booking.
+    BookingPage:
+      type: object
+      required: [items, limit, offset, has_more]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Booking"
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+        has_more:
+          type: boolean
+    Health:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+    FieldError:
+      type: object
+      required: [field, message]
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              description: |
+                One of `invalid_json`, `validation_failed`,
+                `unsupported_media_type`, `payload_too_large`, `not_found`,
+                `method_not_allowed`, `event_not_found`, `booking_not_found`,
+                `insufficient_seats`, `idempotency_key_reused`,
+                `service_unavailable`, `internal_error`.
+            message:
+              type: string
+            fields:
+              type: array
+              description: Per-field problems for `validation_failed`.
+              items:
+                $ref: "#/components/schemas/FieldError"

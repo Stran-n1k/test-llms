@@ -1,0 +1,49 @@
+name: booking
+
+x-app: &app
+  build: .
+  environment:
+    DATABASE_URL: postgres://booking:booking@postgres:5432/booking?sslmode=disable
+    HTTP_ADDR: :8080
+  depends_on:
+    postgres:
+      condition: service_healthy
+  restart: unless-stopped
+  healthcheck:
+    test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+    interval: 5s
+    timeout: 3s
+    retries: 12
+    start_period: 5s
+
+services:
+  postgres:
+    image: postgres:18.1-alpine
+    environment:
+      POSTGRES_USER: booking
+      POSTGRES_PASSWORD: booking
+      POSTGRES_DB: booking
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      # TCP on purpose: the image's init server listens only on a Unix socket,
+      # so this does not report ready before the final server has started.
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "booking", "-d", "booking"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  app:
+    <<: *app
+    ports:
+      - "${APP_PORT:-8080}:8080"
+
+  # A second instance sharing the database: docker compose --profile two-instances up
+  app2:
+    <<: *app
+    profiles: [two-instances]
+    ports:
+      - "${APP2_PORT:-8081}:8080"
+
+volumes:
+  postgres-data:
